@@ -1,6 +1,7 @@
 # 「✦」𝗦𝗶 𝗬𝗶𝗻𝗴
 
-![𝗦𝗶 𝗬𝗶𝗻𝗴 Banner](https://files.catbox.moe/tuz2gl.jpg)
+![𝗦𝗶 𝗬𝗶𝗻𝗴 Banner](https://files.catbox.moe/q75qfg.gif)
+
 
 ## ❓ ¿Qué es Si Ying?
 
