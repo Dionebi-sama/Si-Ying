@@ -3,40 +3,54 @@ import fs from 'fs'
 import fetch from 'node-fetch'
 import axios from 'axios'
 import moment from 'moment-timezone'
+
 const { generateWAMessageFromContent, prepareWAMessageMedia, proto } = pkg
 
 var handler = m => m
-handler.all = async function (m) { 
-  global.canalIdM = ["120363403739366547@newsletter", "120363403739366547@newsletter"]
-  global.canalNombreM = ["Support Dionebi-sama ", "Dionebi-sama 𝗖𝗛𝗡𝗟︎"]
-  global.channelRD = await getRandomChannel()
+handler.all = async function (m) {
 
-  global.d = new Date(new Date + 3600000)
+  /* ───── FECHA Y HORA ───── */
+  global.d = new Date(Date.now() + 3600000)
   global.locale = 'es'
-  global.dia = d.toLocaleDateString(locale, { weekday: 'long' })
-  global.fecha = d.toLocaleDateString('es', { day: 'numeric', month: 'numeric', year: 'numeric' })
-  global.mes = d.toLocaleDateString('es', { month: 'long' })
-  global.año = d.toLocaleDateString('es', { year: 'numeric' })
-  global.tiempo = d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })
+  global.dia = global.d.toLocaleDateString(locale, { weekday: 'long' })
+  global.fecha = global.d.toLocaleDateString('es', {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric'
+  })
+  global.mes = global.d.toLocaleDateString('es', { month: 'long' })
+  global.año = global.d.toLocaleDateString('es', { year: 'numeric' })
+  global.tiempo = global.d.toLocaleTimeString('es', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  })
 
-  var canal = 'https://whatsapp.com/channel/0029Vb6ygDELo4hpelb24M01'  
-  var comunidad = 'https://chat.whatsapp.com/HbnT0v3LLpwEX4LH0yis3j'
-  var git = 'https://github.com/'
-  var github = 'https://github.com/' 
-  var correo = 'minexdt@gmail.com'
-  global.redes = pickRandom([canal, comunidad, git, github, correo])
+  /* ───── CANAL Y COMUNIDAD OFICIAL (FIJOS) ───── */
+  global.canalOficial = 'https://whatsapp.com/channel/0029Vb6ygDELo4hpelb24M01'
+  global.comunidadOficial = 'https://chat.whatsapp.com/HbnT0v3LLpwEX4LH0yis3j'
 
+  /* ───── REDES (SIN RANDOM) ───── */
+  global.redes = `${global.canalOficial}\n${global.comunidadOficial}`
+
+  /* ───── DATOS DEL USUARIO ───── */
   global.nombre = m.pushName || 'Anónimo'
-  global.packsticker = `〄 𝗦𝗧𝗜𝗖𝗞𝗘𝗥𝗦\n✩ᩚ Usuario » ${nombre}\n✦ Bot » ${botname}`
-  global.packsticker2 = `\n\n${dev}`
-  
-  
-  global.rcanal = { 
-    key: { 
+
+  /* ───── PACK STICKERS ───── */
+  global.packsticker =
+`〄 𝗦𝗧𝗜𝗖𝗞𝗘𝗥𝗦
+✩ᩚ Usuario » ${global.nombre}
+✦ Bot » ${global.botname || 'Si Ying'}`
+
+  global.packsticker2 = `\n\n👑 dionebi-sama | 開発者`
+
+  /* ───── MENSAJE REENVIADO (CANAL) ───── */
+  global.rcanal = {
+    key: {
       fromMe: false,
-      participant: "0@s.whatsapp.net",
-      remoteJid: "status@broadcast",
-      id: "Halo",
+      participant: '0@s.whatsapp.net',
+      remoteJid: 'status@broadcast',
+      id: 'SiYing',
       forwardingScore: 999,
       isForwarded: true
     }
@@ -44,14 +58,3 @@ handler.all = async function (m) {
 }
 
 export default handler
-
-function pickRandom(list) {
-  return list[Math.floor(Math.random() * list.length)]
-}
-
-async function getRandomChannel() {
-  let randomIndex = Math.floor(Math.random() * global.canalIdM.length)
-  let id = global.canalIdM[randomIndex]
-  let name = global.canalNombreM[randomIndex]
-  return { id, name }
-}
