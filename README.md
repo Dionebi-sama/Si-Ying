@@ -5,7 +5,7 @@
 
 ## ❓ ¿Qué es Si Ying?
 
-Si Ying es un bot para WhatsApp enfocado en la diversión, utilidad y automatización de tareas, desarrollado usando Baileys para interactuar con WhatsApp Web.
+Si Ying es una bot para WhatsApp enfocado en la diversión, utilidad y automatización de tareas, desarrollado usando Baileys para interactuar con WhatsApp Web.
 
 ---
 
@@ -37,3 +37,4 @@ Tu apoyo ayuda a que Si Ying siga creciendo 🚀
 Bot: Si Ying  
 System: Future-Bot ⚡  
 Dev: Dionebi-sama | 開発者
+
