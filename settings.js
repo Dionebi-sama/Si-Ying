@@ -6,19 +6,18 @@ import fs from "fs"
 global.botNumber = "" 
 
 global.owner = [
-// ZONA DE JIDS
-["50432788804", "Dionebi-sama </>", true],
-["50432788804"],
-[""],  
-// ZONA DE LIDS
-["", "", true], 
-["", "", true]
+  // ZONA DE JIDS
+  ["50432788804", "Dionebi-sama </>", true],
+  ["50432788804"],
+  [""],  
+  // ZONA DE LIDS
+  ["", "", true], 
+  ["", "", true]
 ]
 
 global.mods = []
 global.suittag = ["50432788804"] 
 global.prems = []
-
 
 global.libreria = "Baileys Multi Device"
 global.vs = "^1.3.2"
@@ -34,9 +33,38 @@ global.dev = "✎ ⍴᥆ᥕᥱrᥱძ ᑲᥡ Dionebi-sama"
 global.author = "© mᥲძᥱ ᥕі𝗍һ Dionebi-sama"
 global.etiqueta = "dionebi-sama | 𝟤𝟢𝟤𝟧 ©"
 global.currency = "$ siyings"
+
 global.michipg = "https://files.catbox.moe/tuz2gl.jpg"
 global.icono = "https://files.catbox.moe/tuz2gl.jpg"
-global.catalogo = fs.readFileSync('./lib/catalogo.jpg')
+
+
+// 📦 CATÁLOGO (OPCIONAL / ANTI-CRASH)
+global.catalogo = null
+if (fs.existsSync('./lib/catalogo.jpg')) {
+  global.catalogo = fs.readFileSync('./lib/catalogo.jpg')
+  console.log(chalk.green('[OK] catalogo.jpg cargado'))
+} else {
+  console.log(chalk.yellow('[INFO] Catálogo no usado (sin imagen)'))
+}
+
+
+// 🖼️ ENVÍO GLOBAL CON IMAGEN OPCIONAL
+// Úsalo en cualquier comando (menu, help, info, etc.)
+global.sendWithOptionalImage = async function (conn, chat, text, quoted = null) {
+  if (global.catalogo) {
+    return await conn.sendMessage(
+      chat,
+      { image: global.catalogo, caption: text },
+      { quoted }
+    )
+  } else {
+    return await conn.sendMessage(
+      chat,
+      { text },
+      { quoted }
+    )
+  }
+}
 
 
 global.group = "https://chat.whatsapp.com/DkFQCbxcykkBMXjqr5bq3M"
@@ -44,23 +72,24 @@ global.community = "https://chat.whatsapp.com/HbnT0v3LLpwEX4LH0yis3j"
 global.channel = "https://whatsapp.com/channel/0029Vb6ygDELo4hpelb24M01"
 global.github = "https://github.com/Dionebi-sama/Si-Ying.git"
 global.gmail = "mka98153@gmail.com"
-global.ch = {
-ch1: "120363420941524030@newsletter"
-}
 
+global.ch = {
+  ch1: "120363420941524030@newsletter"
+}
 
 global.APIs = {
-vreden: { url: "https://api.vreden.web.id", key: null },
-delirius: { url: "https://api.delirius.store", key: null },
-zenzxz: { url: "https://api.zenzxz.my.id", key: null },
-siputzx: { url: "https://api.siputzx.my.id", key: null },
-adonix: { url: "https://api-adonix.ultraplus.click", key: null }
+  vreden: { url: "https://api.vreden.web.id", key: null },
+  delirius: { url: "https://api.delirius.store", key: null },
+  zenzxz: { url: "https://api.zenzxz.my.id", key: null },
+  siputzx: { url: "https://api.siputzx.my.id", key: null },
+  adonix: { url: "https://api-adonix.ultraplus.click", key: null }
 }
 
 
+// 🔁 AUTO-RELOAD
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
-unwatchFile(file)
-console.log(chalk.redBright("Update 'settings.js'"))
-import(`${file}?update=${Date.now()}`)
+  unwatchFile(file)
+  console.log(chalk.redBright("Update 'settings.js'"))
+  import(`${file}?update=${Date.now()}`)
 })
