@@ -29,10 +29,7 @@ let handler = async (m, { conn, usedPrefix }) => {
       let taglist = plugin.tags || []
 
       for (let tag of taglist) {
-        // ❌ eliminar "main"
         if (tag.toLowerCase() === 'main') continue
-
-        // ✅ dejar solo info y demás categorías útiles
         if (!menu[tag]) menu[tag] = []
         menu[tag].push(plugin)
       }
@@ -70,12 +67,12 @@ let handler = async (m, { conn, usedPrefix }) => {
 ╭─❖ 「 🤖 INFO DE LA BOT 」 ❖─╮
 │
 │ 𝐇𝐨𝐥𝐚! 𝐒𝐨𝐲 *${botNameToShow}*
-│ ${(conn.user.jid == global.conn.user.jid ? '𝐁𝐨𝐭 𝐏𝐫𝐢𝐧𝐜𝐢𝐩𝐚𝐥 🅥' : '𝐒𝐮𝐛-𝐁𝐨𝐭')}
+│ ${(conn.user.jid === global.conn.user.jid ? '𝐁𝐨𝐭 𝐏𝐫𝐢𝐧𝐜𝐢𝐩𝐚𝐥 🅥' : '𝐒𝐮𝐛-𝐁𝐨𝐭')}
 │
 │ ⏰ Hora: ${moment.tz("America/Tegucigalpa").format("HH:mm:ss")}
 │ 📅 Fecha: ${moment.tz("America/Tegucigalpa").format("DD/MM/YYYY")}
 │ ⚡ Activo: ${uptimeStr}
-│ 👥 Usuarios registrados: de ${totalUsers}
+│ 👥 Usuarios registrados: ${totalUsers}
 │
 ╰────────────────────────╯
 
@@ -89,14 +86,15 @@ https://whatsapp.com/channel/0029Vb6ygDELo4hpelb24M01
     for (let tag in menu) {
       txt += `╭─⊹ ${tag.toUpperCase()} ⊹─╮\n`
       for (let plugin of menu[tag]) {
-        for (let cmd of plugin.help) {
+        let helps = Array.isArray(plugin.help) ? plugin.help : [plugin.help]
+        for (let cmd of helps) {
           txt += `│ ✧ ${usedPrefix + cmd}\n`
         }
       }
       txt += `╰──────────────╯\n\n`
     }
 
-    // 🔹 FIRMA FUTURISTA (fuente chica)
+    // 🔹 FIRMA FUTURISTA
     txt += `
 ────────────────────
 ʙᴏᴛ: 𝗦𝗶 𝗬𝗶𝗻𝗴
