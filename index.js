@@ -38,7 +38,7 @@ const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 let { say } = cfonts
 console.log(chalk.magentaBright('\n🌸 Iniciando Si Ying...'))
 
-say('S I  Y I N G', {
+say('SI YING', {
   font: 'simple',
   align: 'left',
   gradient: ['magenta', 'white']
