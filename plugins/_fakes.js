@@ -1,46 +1,57 @@
 import pkg from '@whiskeysockets/baileys'
+import fs from 'fs'
+import fetch from 'node-fetch'
+import axios from 'axios'
 import moment from 'moment-timezone'
-const { proto } = pkg
+const { generateWAMessageFromContent, prepareWAMessageMedia, proto } = pkg
 
 var handler = m => m
 handler.all = async function (m) {
+global.canalIdM = ["120363403739366547@newsletter", "120363403739366547@newsletter"]
+global.canalNombreM = ["Dios Dionebi-sama ", "Dionebi-sama CHNL"]
+global.channelRD = await getRandomChannel()
 
-  // 🧠 FECHA Y HORA
-  global.d = new Date(Date.now() + 3600000)
-  global.locale = 'es'
-  global.dia = d.toLocaleDateString(locale, { weekday: 'long' })
-  global.fecha = d.toLocaleDateString('es', { day: 'numeric', month: 'numeric', year: 'numeric' })
-  global.tiempo = d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })
+global.d = new Date(new Date + 3600000)
+global.locale = 'es'
+global.dia = d.toLocaleDateString(locale, { weekday: 'long' })
+global.fecha = d.toLocaleDateString('es', { day: 'numeric', month: 'numeric', year: 'numeric' })
+global.mes = d.toLocaleDateString('es', { month: 'long' })
+global.año = d.toLocaleDateString('es', { year: 'numeric' })
+global.tiempo = d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })
 
-  // ✅ TUS LINKS FIJOS (SIN RANDOM)
-  global.canalOficial = 'https://whatsapp.com/channel/0029Vb6ygDELo4hpelb24M01'
-  global.comunidadOficial = 'https://chat.whatsapp.com/HbnT0v3LLpwEX4LH0yis3j'
+var canal = 'https://whatsapp.com/channel/0029Vb6ygDELo4hpelb24M01'
+var comunidad = 'https://chat.whatsapp.com/HbnT0v3LLpwEX4LH0yis3j'
+var git = 'https://github.com/Dionebi-sama/Si-Ying.git'
+var github = 'https://github.com/Dionebi-sama/Si-Ying.git'
+var correo = 'mka98153@gmail.com'
+global.redes = pickRandom([canal, comunidad, git, github, correo])
 
-  // 👉 SOLO SE MOSTRARÁ ESTE
-  global.redes = global.canalOficial
+global.nombre = m.pushName || 'Anónimo'
+global.packsticker = 〄 𝗦𝗧𝗜𝗖𝗞𝗘𝗥𝗦\n✩ᩚ Usuario » ${nombre}\n✦ Bot » ${botname}
+global.packsticker2 = \n\n${dev}
 
-  // 🧍 USUARIO
-  global.nombre = m.pushName || 'Anónimo'
-
-  // 🎨 STICKER PACK
-  global.packsticker =
-`〄 𝗦𝗧𝗜𝗖𝗞𝗘𝗥𝗦
-✩ᩚ Usuario » ${nombre}
-✦ Bot » ${botname}`
-
-  global.packsticker2 = `\n\n${dev}`
-
-  // 📢 CANAL FIJO (ESTE ES EL MÁS IMPORTANTE)
-  global.rcanal = {
-    key: {
-      fromMe: false,
-      participant: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      id: 'SiYing',
-      forwardingScore: 999,
-      isForwarded: true
-    }
-  }
+global.rcanal = {
+key: {
+fromMe: false,
+participant: "0@s.whatsapp.net",
+remoteJid: "status@broadcast",
+id: "Halo",
+forwardingScore: 999,
+isForwarded: true
+}
+}
 }
 
 export default handler
+
+function pickRandom(list) {
+return list[Math.floor(Math.random() * list.length)]
+}
+
+async function getRandomChannel() {
+let randomIndex = Math.floor(Math.random() * global.canalIdM.length)
+let id = global.canalIdM[randomIndex]
+let name = global.canalNombreM[randomIndex]
+return { id, name }
+}
+Configura tu
